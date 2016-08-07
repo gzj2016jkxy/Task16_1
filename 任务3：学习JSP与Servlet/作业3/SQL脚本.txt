@@ -1,0 +1,15 @@
+------------------------------------------------------------
+--说明：使用XAMPP的MySQL数据库
+------------------------------------------------------------
+
+--建表t_students
+------------------------------------------------------------
+CREATE TABLE `t_students` ( 
+	`stu_id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT , 	--学生ID
+	`stu_name` VARCHAR(20) NOT NULL , 						--学生姓名
+	`stu_age` TINYINT NOT NULL , 							--学生年龄
+	`stu_gender` VARCHAR(2) NOT NULL , 						--学生性别
+	`stu_adress` VARCHAR(50) NULL DEFAULT NULL , 			--学生家庭住址
+	PRIMARY KEY (`stu_id`)									--主键学生ID
+	) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT = '学生信息表';
+

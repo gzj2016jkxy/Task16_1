@@ -1,0 +1,40 @@
+body {
+    margin: 15px;
+    padding: 0px;
+}
+
+span{
+    font-size: 35px;
+    color: gold;
+}
+
+#coursediv {
+    width: 500px;
+    margin: 10px auto;
+    padding: 15px;
+    border: 10px solid burlywood;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#coursediv table {
+    margin: auto auto;
+}
+
+.bg1 {
+    background: #ccc;
+}
+
+.bg2 {
+    background: #999;
+}
+
+#coursediv table tr:hover {
+    background: #09C;
+}
+
+.bg3 {
+    background: #ccc;
+}
