@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shopping>
+	<goods>
+		<name>苹果</name>
+		<price>8.5</price>
+		<number>10</number>
+	</goods>
+	<goods>
+		<name>香蕉</name>
+		<price>2.5</price>
+		<number>20</number>
+	</goods>
+</shopping>

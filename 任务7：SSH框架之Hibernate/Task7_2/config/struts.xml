@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<constant name="struts.action.extension" value="action,do"></constant>
+	<package name="test" namespace="/HelloStruts" extends="struts-default">
+		<action name="login" class="com.gzj.action.LoginAction">
+			<result name="info">/info.jsp</result>
+			<result name="loginerror">/loginerror.jsp</result>
+		</action>	
+		<action name="reg" class="com.gzj.action.RegAction">
+			<result name="regsuccess">/reg_success.jsp</result>
+			<result name="regerror">/reg.jsp</result>
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="usermanage" class="com.gzj.action.UserManageAction">
+			<result name="mgr">/mgr.jsp</result>
+			<result name="nouser">/nouser.jsp</result>
+		</action>
+		<action name="queryuser" class="com.gzj.action.QueryUserAction">
+			<result name="info">/info.jsp</result>			
+		</action>
+		<action name="deleteuser" class="com.gzj.action.DeleteUserAction">
+			<result name="delete_success">/delete_success.jsp</result>
+			<result name="delete_fail">/delete_fail.jsp</result>
+		</action>		
+	</package>
+
+</struts>
