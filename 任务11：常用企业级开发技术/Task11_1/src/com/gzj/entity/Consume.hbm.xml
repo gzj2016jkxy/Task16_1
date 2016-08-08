@@ -1,0 +1,22 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="com.gzj.entity.Consume" table="consume">
+
+		<id name="consumeId" type="java.lang.Integer">
+			<column name="consumeId" />
+			<generator class="native"></generator>
+		</id>
+
+		<many-to-one name="vip" class="com.gzj.entity.Vip" fetch="select" lazy="false">
+			<column name="vipid" />
+		</many-to-one>
+		<many-to-one name="commodity" class="com.gzj.entity.Commodity" fetch="select" lazy="false">
+			<column name="commodityId" />
+		</many-to-one>
+
+	</class>
+
+</hibernate-mapping> 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gzj.dao.IPoetDAO">
+	<select id="searchByAuthor" parameterType="String" resultType="String">
+		SELECT a.title FROM Poetries a , Poets b WHERE a.poet_id=b.id AND b.name=#{name}
+	</select>
+	<select id="searchByTitle" parameterType="String" resultType="String">
+		SELECT a.content FROM Poetries a WHERE a.title LIKE #{title}
+	</select>
+	<select id="searchByContent" parameterType="String" resultType="com.gzj.entity.Poet">
+		SELECT b.name, a.title,a.content FROM Poetries a , Poets b WHERE a.poet_id=b.id AND a.content LIKE #{content}
+	</select>
+</mapper>

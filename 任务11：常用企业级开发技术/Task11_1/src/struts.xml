@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<constant name="struts.action.extension" value="action,do"></constant>
+			
+	<package name="default" extends="struts-default">
+		<action name="login" class="userLogin">
+			<result name="main">/main.jsp</result>
+			<result name="loginerror">/loginerror.jsp</result>
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="logout" class="userLogout">
+			<result name="success">/index.jsp</result>			
+		</action>
+		
+		<action name="queryVIPInfo" class="queryVIP">
+			<result name="query">/modifyVIP.jsp</result>
+			<result name="delete">/deleteVIP.jsp</result>			
+		</action>
+		<action name="modifyVIP" class="modifyVIP" method="queryOne">
+			<result name="modifyVIP">/modifyOneVIP.jsp</result>	
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>					
+		</action>
+		<action name="modifyOneVIP" class="modifyVIP" method="modifyOne">
+			<result name="success">/success.jsp</result>		
+			<result name="error">/fail.jsp</result>			
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>	
+		</action>
+		<action name="addVIPInfo" class="addVIP">
+			<result name="success">/success.jsp</result>		
+			<result name="error">/fail.jsp</result>	
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>			
+		</action>
+		<action name="deleteVIP" class="deleteVIP">
+			<result name="success">/success.jsp</result>		
+			<result name="error">/fail.jsp</result>				
+		</action>
+				
+		<action name="queryGoodsInfo" class="queryGoods">
+			<result name="query">/modifyGoods.jsp</result>
+			<result name="delete">/deleteGoods.jsp</result>			
+		</action>
+		<action name="modifyGoods" class="modifyGoods" method="queryOne">
+			<result name="modifyGoods">/modifyOneGood.jsp</result>	
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>					
+		</action>
+		<action name="modifyOneGood" class="modifyGoods" method="modifyOne">
+			<result name="success">/success.jsp</result>		
+			<result name="error">/fail.jsp</result>		
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>		
+		</action>
+		<action name="addGoodsInfo" class="addGoods">
+			<result name="success">/success.jsp</result>		
+			<result name="error">/fail.jsp</result>
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>				
+		</action>
+		<action name="deleteGoods" class="deleteGoods">
+			<result name="success">/success.jsp</result>		
+			<result name="error">/fail.jsp</result>				
+		</action>
+		
+		<action name="queryRecord" class="queryRecord">
+			<result name="query">/modifyRecord.jsp</result>
+			<result name="delete">/deleteRecord.jsp</result>					
+		</action>		
+		<action name="modifyRecord" class="modifyRecord" method="queryOne">
+			<result name="modifyRecord">/modifyOneRecord.jsp</result>						
+		</action>
+		<action name="modifyOneRecord" class="modifyRecord" method="modifyOne">
+			<result name="success">/success.jsp</result>		
+			<result name="error">/fail.jsp</result>				
+		</action>
+		<action name="addRecord" class="addRecord">
+			<result name="success">/success.jsp</result>		
+			<result name="error">/fail.jsp</result>							
+		</action>
+		<action name="deleteRecord" class="deleteRecord">
+			<result name="success">/success.jsp</result>		
+			<result name="error">/fail.jsp</result>				
+		</action>
+		
+	</package>
+		 
+	<package name="check" extends="json-default">
+		<action name="checkVIP" class="checkVIP">
+			<result type="json"></result> 
+		</action>
+		<action name="checkGoods" class="checkGoods">
+			<result type="json"></result> 
+		</action>
+	</package>
+	
+		
+</struts>

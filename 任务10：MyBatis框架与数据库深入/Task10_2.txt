@@ -1,0 +1,124 @@
+------------------------------------------------------------
+--学生表Student
+------------------------------------------------------------
+CREATE TABLE `Student` (	
+	`stu_no` VARCHAR(20) NOT NULL , 						--学号
+	`stu_name` VARCHAR(20) NOT NULL , 						--学生姓名	
+	`stu_gender` VARCHAR(2) NOT NULL , 						--学生性别	
+	PRIMARY KEY (`stu_no`)									--主键
+	) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT = '学生表';
+
+------------------------------------------------------------
+--课程表Course
+------------------------------------------------------------
+CREATE TABLE `Course` (	
+	`course_no` VARCHAR(20) NOT NULL , 						--课程编号
+	`course_name` VARCHAR(20) NOT NULL , 					--课程名称	
+	`teacher_no` VARCHAR(20) NOT NULL , 					--教师工号	
+	PRIMARY KEY (`course_no`)								--主键
+	) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT = '课程表';
+
+------------------------------------------------------------
+--教师表Teacher
+------------------------------------------------------------
+CREATE TABLE `Teacher` (	
+	`teacher_no` VARCHAR(20) NOT NULL , 					--教师工号
+	`teacher_name` VARCHAR(20) NOT NULL , 					--课程名称		
+	PRIMARY KEY (`teacher_no`)								--主键
+	) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT = '教师表';
+
+------------------------------------------------------------
+--成绩表Score
+------------------------------------------------------------
+CREATE TABLE `Score` (
+	`stu_no` VARCHAR(20) NOT NULL , 						--学号
+	`course_no` VARCHAR(20) NOT NULL , 						--课程编号
+	`score` float NOT NULL  								--成绩	
+	) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT = '成绩表';
+
+------------------------------------------------------------
+--表Student插入十条记录
+------------------------------------------------------------
+INSERT INTO `Student` (`stu_no`, `stu_name`, `stu_gender`) 
+	VALUES ('10001', '小明', '男'), ('10002', '小红', '女'),	
+			('10003', '小刚', '男'), ('10004', '小赵', '女'),
+			('10005', '小李', '男'), ('10006', '小小', '女'),
+			('10007', '小郭', '男'), ('10008', '小刘', '女'),
+			('10009', '小王', '男'), ('10010', '小张', '女');
+
+------------------------------------------------------------
+--表Teacher插入三条记录
+------------------------------------------------------------
+INSERT INTO `Teacher` (`teacher_no`, `teacher_name`) 
+	VALUES ('T0001', '张三'), ('T0002', '李四'),('T0003', '王五');
+
+------------------------------------------------------------
+--表Course插入三条记录
+------------------------------------------------------------
+INSERT INTO `Course` (`course_no`, `course_name`, `teacher_no`) 
+	VALUES ('K0001', '语文', 'T0001'), ('K0002', '数学', 'T0002'),('K0003', '外语', 'T0003');
+	
+------------------------------------------------------------
+--表Score插入记录
+------------------------------------------------------------
+INSERT INTO `Score` (`stu_no`, `course_no`, `score`) 
+	VALUES ('10001', 'K0001', 80), ('10001', 'K0002', 90),('10001', 'K0003', 85),
+			('10002', 'K0001', 70), ('10002', 'K0002', 95),
+			('10003', 'K0001', 80), 					   ('10003', 'K0003', 85),
+									('10004', 'K0002', 98),('10004', 'K0003', 86),
+			('10005', 'K0001', 90), ('10005', 'K0002', 60),('10005', 'K0003', 88),
+			('10006', 'K0001', 80), ('10006', 'K0002', 80),
+			('10007', 'K0001', 70), ('10007', 'K0002', 89),('10007', 'K0003', 82),
+			('10008', 'K0001', 80), ('10008', 'K0002', 93),('10008', 'K0003', 84),
+			('10009', 'K0001', 80), ('10009', 'K0002', 90),('10009', 'K0003', 81),
+			('10010', 'K0001', 80), ('10010', 'K0002', 92),('10010', 'K0003', 80);
+		
+------------------------------------------------------------
+--1.给出所有选修数学的女生。
+------------------------------------------------------------
+SELECT a.stu_name FROM Student a 
+	INNER JOIN Score b ON a.stu_no=b.stu_no
+    INNER JOIN Course c ON b.course_no=c.course_no
+    WHERE c.course_name='数学' AND a.stu_gender='女'	
+	
+------------------------------------------------------------
+--2.按照课程，给出每一门课程的平均成绩。
+------------------------------------------------------------
+SELECT b.course_name,ROUND(AVG(a.score),2) FROM Score a 
+	INNER JOIN Course b ON a.course_no=b.course_no     
+	GROUP BY b.course_name
+	
+------------------------------------------------------------
+--3.按照课程，给出每门课程成绩最高的学生姓名
+------------------------------------------------------------
+--XAMPP下mysql数据库测试成功(建临时表t)
+drop table if exists t;
+create table t as 
+select c.course_no, MAX(c.score) AS score FROM Score c GROUP BY c.course_no;
+
+SELECT b.stu_name, a.score
+	FROM Score a, Student b,
+		t
+	WHERE a.stu_no = b.stu_no
+	AND a.course_no = t.course_no
+	AND a.score = t.score;
+	
+--SQL Server 2008 R2能查出数据，在XAMPP下报错，困惑ing
+SELECT b.stu_name, a.score
+	FROM Score a, Student b,
+		(select c.course_no, MAX(c.score) AS score FROM Score c GROUP BY c.course_no)t
+	WHERE a.stu_no = b.stu_no
+	AND a.course_no = t.course_no
+	AND a.score = t.score
+
+------------------------------------------------------------
+--4.给出张三教师所教学生的课程成绩表。
+------------------------------------------------------------
+SELECT a.* FROM Score a 
+	INNER JOIN Course b ON a.course_no=b.course_no
+    INNER JOIN Teacher c ON b.teacher_no=c.teacher_no
+    WHERE c.teacher_name='张三'
+
+
+	
+	
