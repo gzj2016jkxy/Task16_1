@@ -1,0 +1,25 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="com.gzj.entity.Orders" table="orders">
+
+		<id name="ordersId" type="java.lang.Integer">
+			<column name="ordersId" />
+			<generator class="native"></generator>
+		</id>
+
+		<property name="usersName" type="java.lang.String">
+			<column name="usersName" length="40" />
+		</property>		
+		<property name="ordersPrice" type="java.lang.String">
+			<column name="ordersPrice" length="40" />
+		</property>		
+		<property name="ordersDatetime" type="java.lang.String">
+			<column name="ordersDatetime" length="40" />
+		</property>		
+				
+	</class>
+
+</hibernate-mapping> 

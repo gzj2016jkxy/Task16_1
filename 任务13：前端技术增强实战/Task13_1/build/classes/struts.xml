@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<constant name="struts.action.extension" value="action,do"></constant>
+
+	<package name="default" extends="struts-default">
+		<interceptors>
+			<interceptor name="logininter" class="com.gzj.util.LoginInter"></interceptor>
+			<interceptor-stack name="loginstack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="logininter"></interceptor-ref>
+			</interceptor-stack>
+
+		</interceptors>
+		
+		<action name="login" class="usersLogin" method="login">
+			<result name="success">/index.jsp</result>
+		</action>
+		<action name="logout" class="usersLogin" method="logout">
+			<result name="success">/index.jsp</result>
+		</action>
+		<action name="reg" class="usersLogin" method="reg">
+			<result name="success">/register/register_success.jsp</result>
+			<result name="error">/register/register.jsp</result>
+		</action>
+		<action name="getOrder" class="ordersInfo" method="getOrder">
+			<result name="success">/register/orderHistory.jsp</result>			
+		</action>
+		<action name="getOrderDetail" class="ordersInfo" method="getOrderDetail">
+			<result name="success">/register/orderDetail.jsp</result>
+		</action>
+		<action name="getGood" class="goodsInfo" method="getGood">
+			<result name="success">/tourist/1.jsp</result>					
+		</action>		
+		<action name="getGoodsBySort" class="goodsInfo" method="getGoodsBySort">
+			<result name="success">/tourist/love.jsp</result>					
+		</action>				
+		<action name="getGoodsByPrice" class="goodsInfo" method="getGoodsByPrice">
+			<result name="success">/tourist/prices.jsp</result>			
+		</action>				
+		<action name="getGoodsByMaterial" class="goodsInfo" method="getGoodsByMaterial">
+			<result name="success">/tourist/material.jsp</result>				
+		</action>				
+		<action name="getGoodsByLowerSelect" class="goodsInfo" method="getGoodsByLowerSelect">
+			<result name="success">/tourist/lowerSelect.jsp</result>				
+		</action>
+		<action name="getGoodsByHeightSelect" class="goodsInfo" method="getGoodsByHeightSelect">
+			<result name="success">/tourist/heightSelectResult.jsp</result>				
+		</action>
+		<action name="addToCart" class="cartInfo" method="addToCart">
+			<result name="success">/register/cart.jsp</result>			
+		</action>
+		<action name="delCartItem" class="cartInfo" method="delCartItem">
+			<result name="success">/register/cart.jsp</result>			
+		</action>
+		<action name="buildOrder" class="cartInfo" method="buildOrder">
+			<result name="success">/register/OrderInfo.jsp</result>	
+			<result name="error">/index.jsp</result>		
+		</action>
+		<action name="getProduce" class="produceInfo" method="getProduce">
+			<result name="success">/tourist/produceInfo.jsp</result>			
+		</action>
+		<action name="getProduceDetail" class="produceInfo" method="getDetail">
+			<result name="success">/tourist/produceDetails.jsp</result>			
+		</action>
+		<action name="getLeaveLanguage" class="leaveLanguageInfo" method="getLeaveLanguage">
+			<result name="success">/tourist/language_result.jsp</result>			
+		</action>
+		<action name="addLeaveLanguage" class="leaveLanguageInfo" method="addLeaveLanguage">
+			<result name="success">/tourist/language_result.jsp</result>			
+		</action>
+		<!-- 以下是管理员 -->
+		<action name="adminlogin" class="adminLogin" method="login">
+			<result name="success">/admin/index.jsp</result>
+			<result name="error">/admin/CheckLogin.jsp</result>
+		</action>
+		<action name="adminReg" class="usersLogin" method="reg">
+			<result name="success">/admin/addUserInfo.jsp</result>
+			<interceptor-ref name="loginstack"></interceptor-ref>						
+		</action>
+		<action name="adminlogout" class="adminLogin" method="logout">
+			<result name="success">/index.jsp</result>
+		</action>
+		<action name="getUserByName" class="usersLogin" method="getUserByName">
+			<result name="success">/admin/viewUsersByUserName.jsp</result>	
+			<interceptor-ref name="loginstack"></interceptor-ref>		
+		</action>
+		<action name="getUserByID" class="usersLogin" method="getUserByID">
+			<result name="success">/admin/viewUsersByUserId.jsp</result>
+			<interceptor-ref name="loginstack"></interceptor-ref>			
+		</action>
+		<action name="getAllUser" class="usersLogin" method="getAllUser">
+			<result name="success">/admin/viewAllusers.jsp</result>	
+			<interceptor-ref name="loginstack"></interceptor-ref>		
+		</action>
+		<action name="delUser" class="usersLogin" method="delUser">
+			<result name="success">/admin/viewAllusers.jsp</result>
+			<interceptor-ref name="loginstack"></interceptor-ref>			
+		</action>
+		
+		<action name="getOrderByName" class="ordersInfo" method="getOrderByName">
+			<result name="success">/admin/viewOrdersByUserName.jsp</result>	
+			<interceptor-ref name="loginstack"></interceptor-ref>		
+		</action>
+		<action name="getOrderByID" class="ordersInfo" method="getOrderByID">
+			<result name="success">/admin/viewOrdersByOrderId.jsp</result>
+			<interceptor-ref name="loginstack"></interceptor-ref>			
+		</action>
+		<action name="getAllOrder" class="ordersInfo" method="getAllOrder">
+			<result name="success">/admin/viewAllOrders.jsp</result>
+			<interceptor-ref name="loginstack"></interceptor-ref>			
+		</action>
+		
+		<action name="addSort" class="sortInfo" method="addSort">
+			<result name="success">/admin/addSort.jsp</result>	
+			<interceptor-ref name="loginstack"></interceptor-ref>		
+		</action>
+		<action name="getAllSort" class="sortInfo" method="getAllSort">
+			<result name="success">/admin/addGoods_menu.jsp</result>
+			<interceptor-ref name="loginstack"></interceptor-ref>			
+		</action>
+		
+		<action name="addGood" class="goodInfo" method="addGood">
+			<result name="success">/admin/addGoods.jsp</result>	
+			<interceptor-ref name="loginstack"></interceptor-ref>				
+		</action>
+		<action name="getGoodByName" class="goodInfo" method="getGoodByName">
+			<result name="success">/admin/viewgoodsBygoodsName.jsp</result>	
+			<interceptor-ref name="loginstack"></interceptor-ref>				
+		</action>
+		<action name="delGood" class="goodInfo" method="delGood">
+			<result name="success">/admin/deleteGoodsSuccess.jsp</result>	
+			<interceptor-ref name="loginstack"></interceptor-ref>				
+		</action>
+		
+		<action name="addProduce" class="produceInfo" method="addProduce">
+			<result name="success">/admin/addProduce.jsp</result>
+			<interceptor-ref name="loginstack"></interceptor-ref>			
+		</action>
+		<action name="viewAllProduce" class="produceInfo" method="getProduce">
+			<result name="success">/admin/viewAllProduce.jsp</result>			
+		</action>
+		<action name="delProduce" class="produceInfo" method="delProduce">
+			<result name="success">/admin/viewAllProduce.jsp</result>
+			<interceptor-ref name="loginstack"></interceptor-ref>			
+		</action>
+		<action name="adminLeaveLanguage" class="leaveLanguageInfo" method="adminLeaveLanguage">
+			<result name="success">/admin/addLeaveLanguage.jsp</result>	
+			<interceptor-ref name="loginstack"></interceptor-ref>		
+		</action>
+		
+		
+	</package>
+
+	<package name="check" extends="json-default">
+		<action name="checkUsersName" class="checkUsersName" method="checkUsersName">
+			<result type="json"></result> 
+		</action>
+		
+	</package>
+
+</struts>

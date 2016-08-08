@@ -1,0 +1,18 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="com.gzj.entity.ProduceDetails" table="produceDetails">
+
+		<id name="produceId" type="java.lang.Integer">
+			<column name="produceId" length="20" />
+			<generator class="assigned"></generator>
+		</id>
+
+		<property name="sortId" column="sortId"></property>
+		<property name="goodsId" column="goodsId"></property>
+
+	</class>
+
+</hibernate-mapping> 

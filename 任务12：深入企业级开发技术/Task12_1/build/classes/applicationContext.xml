@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+              http://www.springframework.org/schema/beans 
+              http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+              http://www.springframework.org/schema/util 
+              http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:mysql:///tang_poetry?useUnicode=true&amp;characterEncoding=UTF-8
+			</value>
+		</property>
+		<property name="username">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value></value>
+		</property>
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/gzj/entity/Poets.hbm.xml</value>
+				<value>com/gzj/entity/Poetries.hbm.xml</value>
+				<value>com/gzj/entity/Users.hbm.xml</value>
+				<value>com/gzj/entity/Collection.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userDAO" class="com.gzj.dao.impl.UserDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="userLogin" class="com.gzj.action.LoginAction">
+		<property name="userDAO" ref="userDAO"></property>
+	</bean>
+
+	<bean id="poetDAO" class="com.gzj.dao.impl.PoetDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>		
+	</bean>
+	<bean id="PoetAction" class="com.gzj.action.PoetAction">
+		<property name="poetDAO" ref="poetDAO"></property>
+		<property name="collectionDAO" ref="collectionDAO"></property>
+	</bean>
+	
+	<bean id="collectionDAO" class="com.gzj.dao.impl.CollectionDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CollectionAction" class="com.gzj.action.CollectionAction">
+		<property name="collectionDAO" ref="collectionDAO"></property>
+	</bean>
+	<bean id="addCollect" class="com.gzj.action.AddCollectionAction">
+		<property name="collectionDAO" ref="collectionDAO"></property>
+	</bean>
+	<bean id="delCollect" class="com.gzj.action.DelCollectionAction">
+		<property name="collectionDAO" ref="collectionDAO"></property>
+	</bean>
+
+</beans>              

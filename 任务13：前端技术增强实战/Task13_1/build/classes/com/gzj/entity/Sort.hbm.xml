@@ -1,0 +1,19 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="com.gzj.entity.Sort" table="sort">
+
+		<id name="sortId" type="java.lang.Integer">
+			<column name="sortId" />
+			<generator class="native"></generator>
+		</id>
+
+		<property name="sortName" type="java.lang.String">
+			<column name="sortName" length="40" />
+		</property>		
+				
+	</class>
+
+</hibernate-mapping> 

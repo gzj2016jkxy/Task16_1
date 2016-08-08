@@ -1,0 +1,48 @@
+body {
+	margin: 0;
+	padding: 0;	
+	background-color:antiquewhite;
+}
+
+#containdiv{
+    border-radius: 20px;
+    width: 850px;
+    margin: 0 auto;
+    padding: 15px 0;	
+    background-color:#FFFFFF;
+
+}
+
+td {
+	font-size: 9pt;
+	color: #353535;
+	line-height: 120%
+}
+
+body {
+	font-size: 9pt;
+	line-height: 120%
+}
+
+a:link {	
+	color: #000000;
+	text-decoration:none
+}
+
+a:visited {
+	color: #000000;
+	text-decoration:none
+}
+
+a:active {
+	color: #000000;
+	text-decoration:none
+}
+
+a:hover {
+	right: 0px;
+	color: #336699;
+	position: relative;
+	top: 1px;
+	text-decoration:none
+}

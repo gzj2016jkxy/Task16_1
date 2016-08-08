@@ -1,0 +1,40 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="com.gzj.entity.Users" table="users">
+
+		<id name="usersId" type="java.lang.Integer">
+			<column name="usersId" />
+			<generator class="native"></generator>
+		</id>
+
+		<property name="usersName" type="java.lang.String">
+			<column name="usersName" length="40" />
+		</property>
+		<property name="usersPass" type="java.lang.String">
+			<column name="usersPass" length="40" />
+		</property>
+		<property name="usersPassQuestion" type="java.lang.String">
+			<column name="usersPassQuestion" length="40" />
+		</property>
+		<property name="usersPassReply" type="java.lang.String">
+			<column name="usersPassReply" length="40" />
+		</property>
+		<property name="usersTrueName" type="java.lang.String">
+			<column name="usersTrueName" length="40" />
+		</property>
+		<property name="usersAddress" type="java.lang.String">
+			<column name="usersAddress" length="100" />
+		</property>
+		<property name="usersPhone" type="java.lang.String">
+			<column name="usersPhone" length="100" />
+		</property>
+		<property name="usersE_mail" type="java.lang.String">
+			<column name="usersE_mail" length="100" />
+		</property>		
+				
+	</class>
+
+</hibernate-mapping> 

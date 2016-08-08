@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<constant name="struts.action.extension" value="action,do"></constant>
+
+	<package name="default" extends="struts-default">
+		<action name="login" class="userLogin" method="login">
+			<result name="main">/main.jsp</result>
+			<result name="loginerror">/loginerror.jsp</result>
+		</action>
+		<action name="logout" class="userLogin" method="logout">
+			<result name="success">/login.jsp</result>
+		</action>
+		<action name="searchbyauthor" class="PoetAction" method="searchByAuthor">
+			<result name="success">/searchByAuthor_result.jsp</result>
+			<result name="nodata">/nodata.jsp</result>
+		</action>
+		<action name="searchbytitle" class="PoetAction" method="searchByTitle">
+			<result name="success">/searchByTitle_result.jsp</result>
+			<result name="nodata">/nodata.jsp</result>
+		</action>
+		<action name="searchbycontext" class="PoetAction" method="searchByContent">
+			<result name="success">/searchByContext_result.jsp</result>
+			<result name="nodata">/nodata.jsp</result>
+		</action>
+		<action name="searchCollection" class="CollectionAction" method="getCollection">
+			<result name="success">/searchByContext_result.jsp</result>
+			<result name="nodata">/nodata.jsp</result>
+		</action>
+	</package>
+
+	<package name="check" extends="json-default">
+		<action name="addCollect" class="addCollect">
+			<result type="json"></result> 
+		</action>
+		<action name="delCollect" class="delCollect">
+			<result type="json"></result> 
+		</action>		
+	</package>
+
+</struts>

@@ -1,0 +1,20 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="com.gzj.entity.Poetries" table="poetries">
+	
+		<id name="id" column="id">
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="poet_id" column="poet_id"></property>
+		<property name="content" column="content"></property>
+		<property name="title" column="title"></property>
+		<property name="created_at" column="created_at"></property>
+		<property name="updated_at" column="updated_at"></property>
+						
+	</class>
+   
+</hibernate-mapping> 

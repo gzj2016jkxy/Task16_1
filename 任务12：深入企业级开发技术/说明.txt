@@ -1,0 +1,7 @@
+1.新建了2张表：collection表和users表
+2.collection表未与users表和poetries表建立外键关系，只是程序控制往collection表写2个ID
+  原因：建立关联映射后，根据用户ID从collection表找诗集的ID的HQL语句不会写。网上搜了半天晕了。。。
+3.初始有2个用户
+	123 	123
+	admin	admin
+	2个用户收集了李世民的3首诗

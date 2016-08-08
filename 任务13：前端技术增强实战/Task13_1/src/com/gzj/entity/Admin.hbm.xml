@@ -1,0 +1,22 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="com.gzj.entity.Admin" table="admin">
+
+		<id name="adminId" type="java.lang.Integer">
+			<column name="adminId" />
+			<generator class="native"></generator>
+		</id>
+
+		<property name="adminName" type="java.lang.String">
+			<column name="adminName" length="40" />
+		</property>
+		<property name="adminPass" type="java.lang.String">
+			<column name="adminPass" length="40" />
+		</property>		
+				
+	</class>
+
+</hibernate-mapping> 

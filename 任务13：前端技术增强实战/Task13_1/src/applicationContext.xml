@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+              http://www.springframework.org/schema/beans 
+              http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+              http://www.springframework.org/schema/util 
+              http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:mysql:///task13_flowerorder?useUnicode=true&amp;characterEncoding=UTF-8
+			</value>
+		</property>
+		<property name="username">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value></value>
+		</property>
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/gzj/entity/Admin.hbm.xml</value>
+				<value>com/gzj/entity/Goods.hbm.xml</value>
+				<value>com/gzj/entity/LeaveLanguage.hbm.xml</value>
+				<value>com/gzj/entity/Orders.hbm.xml</value>
+				<value>com/gzj/entity/OrdersDetails.hbm.xml</value>
+				<value>com/gzj/entity/Produce.hbm.xml</value>
+				<value>com/gzj/entity/ProduceDetails.hbm.xml</value>
+				<value>com/gzj/entity/Sort.hbm.xml</value>
+				<value>com/gzj/entity/Users.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="usersDAO" class="com.gzj.dao.impl.UsersDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="usersLogin" class="com.gzj.action.UsersAction">
+		<property name="usersDAO" ref="usersDAO"></property>
+	</bean>
+	<bean id="checkUsersName" class="com.gzj.action.CheckAction" abstract="false" lazy-init="default" autowire="default" scope="prototype">
+		<property name="usersDAO">
+			<ref bean="usersDAO" />
+		</property>
+	</bean>
+	
+	<bean id="ordersDAO" class="com.gzj.dao.impl.OrdersDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ordersInfo" class="com.gzj.action.OrdersAction">
+		<property name="ordersDAO" ref="ordersDAO"></property>
+	</bean>
+	
+	<bean id="goodsDAO" class="com.gzj.dao.impl.GoodsDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="goodsInfo" class="com.gzj.action.GoodsAction">
+		<property name="goodsDAO" ref="goodsDAO"></property>
+	</bean>
+	<bean id="cartInfo" class="com.gzj.action.CartAction">
+		<property name="goodsDAO" ref="goodsDAO"></property>
+	</bean>
+		
+	<bean id="produceDAO" class="com.gzj.dao.impl.ProduceDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="produceInfo" class="com.gzj.action.ProduceAction">
+		<property name="produceDAO" ref="produceDAO"></property>
+	</bean>
+
+	<bean id="leaveLanguageDAO" class="com.gzj.dao.impl.LeaveLanguageDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="leaveLanguageInfo" class="com.gzj.action.LeaveLanguageAction">
+		<property name="leaveLanguageDAO" ref="leaveLanguageDAO"></property>
+	</bean>
+	
+	<bean id="adminDAO" class="com.gzj.dao.impl.AdminDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="adminLogin" class="com.gzj.action.AdminAction">
+		<property name="adminDAO" ref="adminDAO"></property>
+	</bean>
+	
+	<bean id="sortDAO" class="com.gzj.dao.impl.SortDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="sortInfo" class="com.gzj.action.SortAction">
+		<property name="sortDAO" ref="sortDAO"></property>
+	</bean>
+		
+	<bean id="goodInfo" class="com.gzj.action.GoodAction">
+		<property name="goodsDAO" ref="goodsDAO"></property>
+	</bean>
+	
+
+</beans>              

@@ -1,0 +1,22 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="com.gzj.entity.Collection" table="collection">
+
+		<id name="collectionid" type="java.lang.Integer">
+			<column name="collectionid" />
+			<generator class="native"></generator>
+		</id>
+
+		<many-to-one name="users" class="com.gzj.entity.Users" fetch="select" lazy="false">
+			<column name="userid" />
+		</many-to-one>
+		<many-to-one name="poetries" class="com.gzj.entity.Poetries" fetch="select" lazy="false">
+			<column name="id" />
+		</many-to-one>
+
+	</class>
+
+</hibernate-mapping> 
