@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!-- 实体类,简称 -设置别名 -->
+	<typeAliases>
+		<typeAlias type="com.gzj.model.Admin" alias="Admin"/>
+		<typeAlias type="com.gzj.model.BookInfo" alias="BookInfo"/>
+		<typeAlias type="com.gzj.model.BookType" alias="BookType"/>		
+		<typeAlias type="com.gzj.model.IdCard" alias="IdCard"/>
+		<typeAlias type="com.gzj.model.ReaderInfo" alias="ReaderInfo"/>
+		<typeAlias type="com.gzj.model.Book" alias="Book"/>
+		<typeAlias type="com.gzj.model.Reader" alias="Reader"/>
+		<typeAlias type="com.gzj.util.Page" alias="page"/>
+	</typeAliases>
+	<!-- 实体接口映射资源 -->
+	<!--
+		说明：如果xxMapper.xml配置文件放在和xxMapper.java统一目录下，mappers也可以省略，因为org.mybatis.spring.mapper.MapperFactoryBean默认会去查找与xxMapper.java相同目录和名称的xxMapper.xml
+	-->
+	<mappers>
+		<mapper resource="com/gzj/mapper/AdminMapper.xml" />
+		<mapper resource="com/gzj/mapper/BookInfoMapper.xml" />
+		<mapper resource="com/gzj/mapper/BookTypeMapper.xml" />
+		<mapper resource="com/gzj/mapper/IdCardMapper.xml" />
+		<mapper resource="com/gzj/mapper/ReaderInfoMapper.xml" />
+	</mappers>
+
+</configuration>  

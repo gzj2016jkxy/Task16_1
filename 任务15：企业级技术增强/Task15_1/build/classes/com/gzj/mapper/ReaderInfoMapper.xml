@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：必须与对应的接口全类名一致 id:必须与对应接口的某个对应的方法名一致 -->
+<mapper namespace="com.gzj.mapper.ReaderInfoMapper">
+
+	<!-- 使用resultMap映射实体类和字段之间的一一对应关系 -->
+	<!-- id不能重复，故用别名bid和cid（查询SQL语句定义） -->
+	<resultMap type="com.gzj.model.ReaderInfo" id="ReaderResultMap">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="sex" column="sex" />
+		<result property="age" column="age" />
+		<result property="idCardNo" column="idcardno" />
+		<result property="date" column="date" />
+		<result property="maxNum" column="maxnum" />
+		<result property="tel" column="tel" />
+		<result property="keepMoney" column="keepmoney" />
+		<result property="zy" column="zy" />
+		<association property="idCard" javaType="com.gzj.model.IdCard">
+			<id property="id" column="bid" />
+			<result property="typeName" column="typename" />
+		</association>
+	</resultMap>
+
+	<select id="getAll" resultMap="ReaderResultMap">
+		select a.*,b.id bid,b.typename
+		from readerinfo a inner join idcard b on a.idcardtype=b.id order by
+		a.id;
+	</select>
+
+	<select id="getOneById" parameterType="int" resultMap="ReaderResultMap">
+		select
+		a.*,b.id bid,b.typename
+		from
+		readerinfo a inner join idcard b on
+		a.idcardtype=b.id where a.id=#{id};
+	</select>
+
+	<select id="getByNo" parameterType="String" resultMap="ReaderResultMap">
+		select
+		a.*,b.id bid,b.typename
+		from
+		readerinfo a inner join idcard b on
+		a.idcardtype=b.id where a.idcardno=#{idCardNo};
+	</select>
+
+	<update id="update" parameterType="Reader">
+		update readerinfo set
+		name=#{name},sex=#{sex},age=#{age},idcardtype=#{idCardType},
+		idcardno=#{idCardNo},date=#{date},maxnum=#{maxNum},tel=#{tel},keepmoney=#{keepMoney},zy=#{zy}
+		where id=#{id};
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete from readerinfo where
+		id=#{id};
+	</delete>
+
+	<insert id="save" parameterType="Reader">
+		insert into
+		readerinfo(name,sex,age,idcardtype,idcardno,date,maxnum,tel,keepmoney,zy)
+		values(#{name},#{sex},#{age},#{idCardType},#{idCardNo},#{date},#{maxNum},#{tel},#{keepMoney},#{zy});
+	</insert>
+
+
+
+</mapper>

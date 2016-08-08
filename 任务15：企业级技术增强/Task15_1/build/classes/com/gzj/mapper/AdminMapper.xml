@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：必须与对应的接口全类名一致 id:必须与对应接口的某个对应的方法名一致 -->
+<mapper namespace="com.gzj.mapper.AdminMapper">
+
+	<select id="checkLogin" parameterType="Admin" resultType="Admin">
+		select
+		* from admin where username=#{userName} and password=#{passWord};
+	</select>
+
+	<update id="updatePwd">
+		update admin set password=#{1} where id=#{0};
+	</update>
+
+	<select id="getByName" parameterType="String" resultType="Admin">
+		select
+		* from admin where username=#{userName};
+	</select>
+
+	<insert id="save" parameterType="Admin">
+		insert into
+		admin(username,password,mail)
+		values(#{userName},#{passWord},#{mail});
+	</insert>
+
+</mapper>

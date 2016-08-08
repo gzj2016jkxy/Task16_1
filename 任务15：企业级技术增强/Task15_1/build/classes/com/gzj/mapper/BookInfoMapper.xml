@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：必须与对应的接口全类名一致 id:必须与对应接口的某个对应的方法名一致 -->
+<mapper namespace="com.gzj.mapper.BookInfoMapper">
+
+	<!-- 使用resultMap映射实体类和字段之间的一一对应关系 -->
+	<!-- id不能重复，故用别名bid和cid（查询SQL语句定义） -->
+	<resultMap type="com.gzj.model.BookInfo" id="BookResultMap">
+		<id property="id" column="id" />
+		<result property="isbn" column="isbn" />
+		<result property="bookName" column="bookname" />
+		<result property="writer" column="writer" />
+		<result property="translater" column="translater" />
+		<result property="publisher" column="publisher" />
+		<result property="date" column="date" />
+		<result property="price" column="price" />
+		<association property="bookType" javaType="com.gzj.model.BookType">
+			<id property="id" column="bid" />
+			<result property="typeName" column="typename" />
+		</association>
+	</resultMap>
+
+	<select id="getAll" resultMap="BookResultMap">
+		select a.*,b.id bid,b.typename
+		from
+		bookinfo a inner join booktype b on a.typeid=b.id order by a.id;
+	</select>
+
+	<select id="getOneById" parameterType="int" resultMap="BookResultMap">
+		select
+		a.*,b.id bid,b.typename
+		from
+		bookinfo a inner join booktype b on
+		a.typeid=b.id where a.id=#{id};
+	</select>
+
+	<select id="getByIsbn" parameterType="String" resultMap="BookResultMap">
+		select
+		a.*,b.id bid,b.typename
+		from
+		bookinfo a inner join booktype b on
+		a.typeid=b.id where a.isbn=#{isbn};
+	</select>
+
+	<update id="update" parameterType="Book">
+		update bookinfo set
+		isbn=#{isbn},typeid=#{typeId},bookname=#{bookName},writer=#{writer},
+		translater=#{translater},publisher=#{publisher},date=#{date},price=#{price}
+		where id=#{id};
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete from bookinfo where
+		id=#{id};
+	</delete>
+
+	<insert id="save" parameterType="Book">
+		insert into
+		bookinfo(isbn,typeid,bookname,writer,translater,publisher,date,price)
+		values(#{isbn},#{typeId},#{bookName},#{writer},#{translater},#{publisher},#{date},#{price});
+	</insert>
+
+</mapper>

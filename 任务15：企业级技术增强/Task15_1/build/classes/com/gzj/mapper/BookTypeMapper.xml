@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：必须与对应的接口全类名一致 id:必须与对应接口的某个对应的方法名一致 -->
+<mapper namespace="com.gzj.mapper.BookTypeMapper">
+
+	<select id="getAll" resultType="BookType">
+		select * from booktype;
+	</select>
+
+	<select id="getOneById" parameterType="int" resultType="BookType">
+		select *
+		from booktype where id=#{id};
+	</select>
+
+	<update id="update" parameterType="BookType">
+		update booktype set
+		typename=#{typeName} where id=#{id};
+	</update>
+
+	<select id="getByName" parameterType="String" resultType="BookType">
+		select
+		* from booktype where typename=#{typeName};
+	</select>
+
+	<insert id="addType" parameterType="BookType">
+		insert into booktype
+		(typename) values (#{typeName});
+	</insert>
+
+	<select id="getIdByName" parameterType="String" resultType="int">
+		select id from booktype where typename=#{typeName};
+	</select>
+
+</mapper>
